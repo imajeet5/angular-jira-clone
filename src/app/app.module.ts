@@ -10,17 +10,22 @@ import { NavbarLeftComponent } from './views/components/navigation/navbar-left/n
 import { NavigationComponent } from './views/components/navigation/navigation/navigation.component';
 import { SidebarComponent } from './views/components/navigation/sidebar/sidebar.component';
 import { ProjectComponent } from './views/pages/project/project.component';
-// import { WorksInProgressComponent } from './views/pages/works-in-progress/works-in-progress.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
+import { SvgDefinitionsComponent } from './views/components/shared/svg-definitions/svg-definitions.component';
+import { SvgIconComponent } from './views/components/shared/svg-icon/svg-icon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
     ProjectComponent,
     NavbarLeftComponent,
     SidebarComponent,
-    NavigationComponent
+    NavigationComponent,
+    SvgDefinitionsComponent,
+    SvgIconComponent
   ],
   imports: [
     BrowserModule,
