@@ -2,6 +2,7 @@
   <div class="board-dnd-list"
        board-dnd-list
        *ngFor="let status of issueStatuses"
-       [status]="status" [issues]="project?.issues">
+       [status]="status"
+       [issues]="projectQuery.issue$ | async">
   </div>
 </div>

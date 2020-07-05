@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
 
+//This will initialize the store
+
 export interface FilterState {
   searchTerm: string;
   userIds: string[];

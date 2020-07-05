@@ -1,4 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+import { environment } from '../environments/environment';
+import { ProjectQuery } from './project/state/project/project.query';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +11,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'frontend';
+  constructor(public projectQuery: ProjectQuery) {}
 }

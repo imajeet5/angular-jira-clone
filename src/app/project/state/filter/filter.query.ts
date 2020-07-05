@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { FilterStore, FilterState } from './filter.store';
 
+//This will provide a way to get the state
+
 @Injectable({ providedIn: 'root' })
 export class FilterQuery extends Query<FilterState> {
   constructor(protected store: FilterStore) {
@@ -13,7 +15,6 @@ export class FilterQuery extends Query<FilterState> {
   });
 
   allState$ = this.select();
-
   onlyMyIssue$ = this.select('onlyMyIssue');
   recentUpdate$ = this.select('recentUpdate');
 }

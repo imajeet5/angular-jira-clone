@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FilterStore, createInitialFilterState } from './filter.store';
 
+// this will change the state
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,16 +10,12 @@ export class FilterService {
   constructor(private store: FilterStore) {}
 
   updateSearchTerm(searchTerm: string) {
-    this.store.update({
-      searchTerm
-    });
+    this.store.update({ searchTerm });
   }
 
   toggleOnlyMyIssue() {
     this.store.update((state) => {
       let onlyMyIssue = !state.onlyMyIssue;
-      const x = {...state, onlyMyIssue}
-      debugger;
       return {
         ...state,
         onlyMyIssue
