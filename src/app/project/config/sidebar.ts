@@ -1,4 +1,4 @@
-import { SideBarLink } from '../interface/ui-model/nav-link';
+import { SideBarLink } from '@ajeet/interface/ui-model/nav-link';
 
 export const SideBarLinks = [
   new SideBarLink('Kanban Board', 'board', '/'),

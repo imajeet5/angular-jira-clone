@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IssueStatus, JIssue, IssueType, IssuePriority } from '@ajeet/interface/issue';
+import { IssueStatus } from '@ajeet/interface/issue';
 import { JProject } from '@ajeet/interface/project';
-import { JiraApiService } from '@ajeet/service/api.service';
+import { JiraApiService } from '@ajeet/project/project.service';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 @Component({
