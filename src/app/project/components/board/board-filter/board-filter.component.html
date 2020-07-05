@@ -1,21 +1,22 @@
 <div class="flex items-center mt-6">
   <j-input aria-label="search"
-           icon="search" [control]="searchControl">
+           icon="search"
+           [control]="searchControl">
   </j-input>
   <j-button class="ml-3"
             className="btn-empty"
-            [isActive]="filter.onlyMyIssue"
+            [isActive]="filterQuery.onlyMyIssue$ | async"
             (clicked)="onlyMyIssueChanged()">
       Only My Issues
   </j-button>
   <j-button class="ml-3"
-            [isActive]="filter.recentUpdate"
+            [isActive]="filterQuery.recentUpdate$ | async"
             (clicked)="recentUpdateChanged()"
             className="btn-empty">
       Recently Updated
   </j-button>
   <div class="ml-3 flex items-center"
-       *ngIf="filter.any">
+       *ngIf="filterQuery.any$ | async">
       <div class="mr-3 w-px bg-backgroundMedium self-stretch"></div>
       <j-button variant="secondary"
                 (clicked)="resetAll()">Clear all

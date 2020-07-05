@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { JFilter } from '@ajeet/interface/filter';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FilterQuery } from '@ajeet/project/state/filter/filter.query';
+import { FilterService } from '@ajeet/project/state/filter/filter.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'board-filter',
@@ -11,30 +12,33 @@ import { FormControl } from '@angular/forms';
 })
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {
-  filter: JFilter;
   searchControl: FormControl = new FormControl();
-  @Output() filterChanged = new EventEmitter();
-  constructor() {
-    this.filter = new JFilter();
-  }
+
+  constructor(public filterQuery: FilterQuery, public filterService: FilterService) {}
 
   ngOnInit(): void {
     this.searchControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged(), untilDestroyed(this))
       .subscribe((term) => {
-        this.filter.searchTerm = term;
+        this.filterService.updateSearchTerm(term);
       });
+
+    this.filterQuery.allState$.subscribe((x) => {
+      // debugger;
+      console.log(x);
+    });
   }
 
   recentUpdateChanged() {
-    this.filter.recentUpdate = !this.filter.recentUpdate;
+    this.filterService.toggleRecentUpdate();
   }
 
   onlyMyIssueChanged() {
-    this.filter.onlyMyIssue = !this.filter.onlyMyIssue;
+    this.filterService.toggleOnlyMyIssue();
   }
 
   resetAll() {
-    this.filter = new JFilter();
+    this.searchControl.setValue('');
+    this.filterService.resetAll();
   }
 }
