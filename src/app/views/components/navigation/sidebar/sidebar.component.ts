@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SideBarLink } from 'src/app/interface/ui-model/nav-link';
-import { SideBarLinks } from 'src/app/config/sidebar';
-import { JProject } from 'src/app/interface/project';
+import { SideBarLink } from '@ajeet/interface/ui-model/nav-link';
+import { SideBarLinks } from '@ajeet/config/sidebar';
+import { JProject } from '@ajeet/interface/project';
 
 @Component({
   selector: 'app-sidebar',

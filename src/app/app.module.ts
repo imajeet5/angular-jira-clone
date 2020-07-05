@@ -23,6 +23,7 @@ import { SvgIconComponent } from './views/components/shared/svg-icon/svg-icon.co
 import { BoardComponent } from './views/pages/board/board.component';
 import { ProjectComponent } from './views/pages/project/project.component';
 import { SettingsComponent } from './views/pages/settings/settings.component';
+import { IssueCardComponent } from './views/components/board/issue-card/issue-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SettingsComponent } from './views/pages/settings/settings.component';
     SettingsComponent,
     ButtonComponent,
     InputComponent,
-    BoardDndListComponent
+    BoardDndListComponent,
+    IssueCardComponent
   ],
   imports: [
     BrowserModule,
