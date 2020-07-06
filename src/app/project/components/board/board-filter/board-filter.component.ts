@@ -4,6 +4,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FilterQuery } from '@ajeet/project/state/filter/filter.query';
 import { FilterService } from '@ajeet/project/state/filter/filter.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ProjectQuery } from '@ajeet/project/state/project/project.query';
+import { JUser } from '@ajeet/interface/user';
 
 @Component({
   selector: 'board-filter',
@@ -13,8 +15,13 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {
   searchControl: FormControl = new FormControl();
+  userIds: string[] = [];
 
-  constructor(public filterQuery: FilterQuery, public filterService: FilterService) {}
+  constructor(
+    public filterQuery: FilterQuery,
+    public filterService: FilterService,
+    public projectQuery: ProjectQuery
+  ) {}
 
   ngOnInit(): void {
     this.searchControl.valueChanges
@@ -23,10 +30,16 @@ export class BoardFilterComponent implements OnInit {
         this.filterService.updateSearchTerm(term);
       });
 
-    this.filterQuery.allState$.subscribe((x) => {
-      // debugger;
-      console.log(x);
+    this.filterQuery.userIds$.pipe(untilDestroyed(this)).subscribe((userIds) => {
+      this.userIds = userIds;
     });
+  }
+
+  isUserSelected(user: JUser) {
+    return this.userIds.includes(user.id);
+  }
+  userChanged(user: JUser) {
+    this.filterService.toggleUserId(user.id);
   }
 
   recentUpdateChanged() {

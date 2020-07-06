@@ -23,6 +23,19 @@ export class FilterService {
     });
   }
 
+  toggleUserId(userId: string) {
+    this.store.update((state) => {
+      let hasUser = state.userIds.includes(userId);
+      let userIds = hasUser
+        ? state.userIds.filter((x) => x !== userId)
+        : [...state.userIds, userId];
+      return {
+        ...state,
+        userIds
+      };
+    });
+  }
+
   toggleRecentUpdate() {
     this.store.update((state) => {
       let recentUpdate = !state.recentUpdate;
