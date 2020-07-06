@@ -16,10 +16,12 @@ export class ProjectQuery extends Query<ProjectState> {
   issue$ = this.select('issues');
   users$ = this.select('users');
 
-  issueByStatus$ = (status: IssueStatus): Observable<JIssue[]> => {
+  issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
     return this.select('issues').pipe(
       map((issues) => {
-        let filteredIssues = issues.filter((x) => x.status === status);
+        let filteredIssues = issues
+          .filter((x) => x.status === status)
+          .sort((a, b) => a.listPosition - b.listPosition);
         return filteredIssues;
       })
     );

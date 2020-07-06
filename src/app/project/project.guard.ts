@@ -22,14 +22,12 @@ export class ProjectGuard implements CanActivate {
     return this._projectQuery.all$.pipe(
       debounceTime(10),
       switchMap((state) => {
-        debugger;
         if (!state.id) {
           return this._projectService.getProject();
         }
         return of(state);
       }),
       filter((state) => {
-        debugger;
         return !!state.id;
       }),
       take(1),

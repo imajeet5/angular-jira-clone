@@ -7,9 +7,24 @@
       <div class="flex items-center">
         <svg-icon class="text-textMedium mr-1" [name]="issueTypeIcon" [size]="20"> </svg-icon>
 
-        <svg-icon [name]="priorityIcon.name" [size]="20" [style.color]="priorityIcon.color" nz-tooltip  [nzTooltipTitle]="priorityIcon.label"
-        nzTooltipPlacement="right">
+        <svg-icon
+          [name]="priorityIcon.name"
+          [size]="20"
+          [style.color]="priorityIcon.color"
+          nz-tooltip
+          [nzTooltipTitle]="priorityIcon.label"
+          nzTooltipPlacement="right"
+        >
         </svg-icon>
+      </div>
+      <div class="flex flex-row-reverse ml-1">
+        <j-avatar
+          *ngFor="let user of assignees"
+          [className]="'shadow-outline-white -ml-1'"
+          [size]="24"
+          [avatarUrl]="user.avatarUrl"
+        >
+        </j-avatar>
       </div>
     </div>
   </div>

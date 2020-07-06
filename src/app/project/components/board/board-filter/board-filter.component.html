@@ -5,6 +5,7 @@
       *ngFor="let user of projectQuery.users$ | async"
       class="lift-avatar"
       nz-tooltip
+      nzTooltipPlacement="bottom"
       [class.is-active]="isUserSelected(user)"
       [nzTooltipTitle]="user.name"
     >
