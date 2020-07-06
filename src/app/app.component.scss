@@ -5,6 +5,14 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  > nz-spin {
+    @apply flex flex-grow;
+
+    > .ant-spin-container {
+      @apply flex flex-grow;
+    }
+  }
 }
 
 app-project {

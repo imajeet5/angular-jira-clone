@@ -4,6 +4,7 @@ import { IssueStatus, IssueStatusDisplay, JIssue } from '@ajeet/interface/issue'
 import { FilterState } from '@ajeet/project/state/filter/filter.store';
 import { ProjectService } from '@ajeet/project/state/project/project.service';
 import { Observable } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: '[board-dnd-list]',
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./board-dnd-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+@UntilDestroy()
 export class BoardDndListComponent implements OnInit {
   IssueStatusDisplay = IssueStatusDisplay;
   @Input() status: IssueStatus;
@@ -19,15 +21,15 @@ export class BoardDndListComponent implements OnInit {
   issues: JIssue[];
 
   get issuesCount(): number {
-    return 0;
+    return this.issues.length;
   }
 
   constructor(private _projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.issues$.subscribe((issues) => {
+    this.issues$.pipe(untilDestroyed(this)).subscribe((issues) => {
       this.issues = issues;
-      console.log(issues);
+      // console.log(issues);
     });
   }
 
